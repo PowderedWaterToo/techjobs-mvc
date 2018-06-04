@@ -40,18 +40,23 @@
 
        <div th:if="${jobs} and ${jobs.size()}">
 
-           <h2 th:text="${jobs.size()} + ' Result(s)'"></h2>
+           <h3 th:text="${jobs.size()} + ' Result(s)'"></h3>
 
            <table th:each="job : ${jobs}" th:class="job-listing">
                <tr th:each="key : ${job.keySet()}">
-                   <td th:text="${key}"></td>
+                   <td th:text="${#strings.capitalizeWords(key)}"></td>
                    <td th:text="${job.get(key)}"></td>
                </tr>
            </table>
 
        </div>
 
-   </div>
+    <div th:unless="${jobs} and ${jobs.size()}">
+        <h3>No jobs meet that criteria. You are unemployable.</h3>
+    </div>
+
+
+</div>
 
    </body>
    </html>
